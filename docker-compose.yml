@@ -1,0 +1,6 @@
+version: "3.9"
+services:
+  bot:
+    build: .
+    volumes:
+      - ${PWD}/config.yml:/app/config.yml

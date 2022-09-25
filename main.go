@@ -43,7 +43,7 @@ func checkCommand(msg twitch.PrivateMessage, client *twitch.Client) {
 }
 
 func startRating(client *twitch.Client) {
-	client.Say(cfg.ChannelName, "НАЧИНАЕТСЯ ОЦЕНКА АНИМЕ! ПИШИТЕ ЧИСЛО ОТ 1 ДО 10")
+	client.Say(cfg.ChannelName, "НАЧАЛО ГОЛОСОВАНИЯ. СТАВЬТЕ ОЦЕНКИ ОТ 1 ДО 10!")
 	ratingStatus = 1
 }
 
@@ -62,7 +62,7 @@ func endRating(client *twitch.Client) {
 
 	avgRating := float64(totalSum) / float64(len(usersVotes))
 
-	client.Say(cfg.ChannelName, fmt.Sprintf("Оценка окончена! Средняя оценка - %.1f. Самая частая оценка - %d(проголосовали %d раз).", avgRating, top.value, top.count))
+	client.Say(cfg.ChannelName, fmt.Sprintf("ГОЛОСОВАНИЕ ЗАКРЫТО! СРЕДНЯЯ ОЦЕНКА - %.1f. ВСЕГО ПРОГОЛОСОВАЛИ - %d. САМАЯ ЧАСТАЯ ОЦЕНКА - %d (проголосовали %d раз).", avgRating, len(usersVotes), top.value, top.count))
 	ratingStatus = 0
 	usersVotes = make(map[string]int)
 	votesCount = make(map[int]int)
